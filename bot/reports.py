@@ -30,7 +30,7 @@ async def reports(message):
         )
 
 
-@bot.message_handler(commands=["get_t_graph"])
+@bot.message_handler(commands=["t_report"])
 @login_required
 async def t_reports(message):
     chatid = message.chat.id
@@ -46,7 +46,7 @@ async def t_reports(message):
         )
 
 
-@bot.message_handler(commands=["get_h_graph"])
+@bot.message_handler(commands=["h_report"])
 @login_required
 async def h_reports(message):
     chatid = message.chat.id
