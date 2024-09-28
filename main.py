@@ -2,6 +2,7 @@ import asyncio
 from datetime import datetime
 from bot.bot_data import bot
 from bot import *
+from bot.help import help
 from raspberry.read import read_dht
 from raspberry.handle_data import save_data
 from raspberry.events import check_conditions, generateReports
@@ -30,7 +31,7 @@ async def reports():
     current_time = datetime.now()
     await generateReports(current_time)
     await asyncio.sleep(5)
-    reports()
+    await reports()
 
 
 async def main():
