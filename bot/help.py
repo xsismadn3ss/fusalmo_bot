@@ -9,10 +9,10 @@ async def help(message):
     information = """
 \nFUSALMO BOT 🚀🌱🌦️\n
 Command list
-/status - get current humidity and temperature
+/status - current humidity and temperature
 /sign_in - sign in to have all access
-/t_report - get temperature chart from latest data
-/h_report - get humidity chart from latest data
+/t_report - load temperature chart
+/h_report - load humidity chart
 /reports - get all reports
 
 Information contact:
