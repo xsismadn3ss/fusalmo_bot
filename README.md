@@ -46,3 +46,27 @@ python -m venv .venv
 pip install -r requirements.txt
 
 ```
+
+# Probar sensor
+
+Ejcuta el archivo `test_dht_sensor.py` para comprobar el funcionamiento del sensor a utilizar.
+
+```bash
+python test_dht_sensor.py
+```
+
+Si el sensor esta conectado correctamente veras un mensaje con los datos que lee el sensor.
+
+### Conexiones
+
+- Voltaje (_DHT11_) → pin1 1 (_raspberry_)
+- Señal de salida (_DHT11_) → pin 7 (_raspberry_)
+- GND (_DHT11_) → pin 9 (_raspberry_)
+
+# Crea la base de datos
+
+Ejecuta el archivo `create_db.py`.
+
+```bash
+python create_db.py
+```
