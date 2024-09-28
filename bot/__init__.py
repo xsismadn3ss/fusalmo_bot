@@ -6,4 +6,4 @@ from bot.sign_in import sign_in
 from bot.status import status
 from bot.help import help
 
-print("Commando cargados exitosamente 🎉")
+print("Commandos cargados exitosamente 🎉")
