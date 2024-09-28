@@ -1,7 +1,7 @@
 from bot.bot_data import bot
 from bot.fx.check_login import login_required
 
-@bot.message_handler(commnads=["help"])
+@bot.message_handler(commands=["help"])
 @login_required
 async def help(message):
     chatid = message.chat.id
