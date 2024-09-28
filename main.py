@@ -18,7 +18,7 @@ async def raspberry():
             h, t = await read_dht()
             t_list.append(t)
             h_list.append(h)
-            if i == 40:
+            if i == 10:
                 h_list, t_list, i = await save_data(h_list, t_list, i)
 
         except Exception as e:
@@ -40,7 +40,7 @@ async def main():
     raspberry_task = asyncio.create_task(raspberry())
     reports_task = asyncio.create_task(reports())
     await bot.polling()
-    
+
     asyncio.gather(raspberry_task, reports_task)
 
 if __name__ == "__main__":
