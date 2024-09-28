@@ -4,6 +4,14 @@ Este proyecto muestra una forma de automatizar datos de un sensor usando raspber
 
 Proyecto diseñado para Hackathon Space Apps
 
+# Clonar repositorio
+
+Para clonar el repositorio ejecuta el siguiente comando en la consola de la raspberry.
+
+```bash
+git clone https://github.com/xsismadn3ss/fusalmo_bot
+```
+
 # Configuración de raspberry
 
 Se necesita un paquete linux llamado OpenBLAS para trabajar con numpy y crear las gráficas. Ejecuta el siguiente el comando para instalar el paquete:
