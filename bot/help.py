@@ -6,7 +6,7 @@ from bot.fx.check_login import login_required
 async def help(message):
     chatid = message.chat.id
     
-    information = """ FUSALMO BOT\n
+    information = """ FUSALMO BOT 🤖🌱🌦️\n
     Command list\n
     /status - get current humidity and temperature\n
     /sign_in - sign in to have all access\n
@@ -17,3 +17,5 @@ async def help(message):
     Information contact:
     → @xs_ismadn3ss
     """
+
+    await bot.send_message(chatid, information)
