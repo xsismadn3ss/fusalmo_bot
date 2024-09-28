@@ -40,9 +40,11 @@ async def main():
     raspberry_task = asyncio.create_task(raspberry())
     reports_task = asyncio.create_task(reports())
     await bot.polling()
-
-    asyncio.gather(raspberry_task, reports_task)
-
+    try:
+        asyncio.gather(raspberry_task, reports_task)
+    except Exception as e:
+        print("Tareas finalizadas")
+        print(e)
 
 if __name__ == "__main__":
     print("Bot inicializado 🤖")
