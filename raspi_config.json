@@ -1,6 +1,8 @@
 {
+    "microcontroller": "Raspberry pi",
     "Model": "Model 2 B",
     "status": {
-        "reports_sent": false
+        "reports_sent": false,
+        "alert_sent": false
     }
 }
