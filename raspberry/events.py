@@ -31,7 +31,7 @@ async def check_conditions(h: float, t: float):
     status = data["status"]["alert_sent"]
     print("checking conditions...")
 
-    if h > 30 and t < 22 and status == False:
+    if h >= 30 and t <= 22 and status == False:
         user: list[User] = await user_queries.get_all()
         for user in users:
             await bot.send_message(
