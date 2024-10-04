@@ -34,12 +34,15 @@ async def reports():
     await reports()
 
 async def conditions():
+    print("conditions")
     alert_sent = await check_conditions()
     if alert_sent:
         print("checking condition in 30 min")
         await asyncio.sleep(1800)
         await status_state(False, 'alert_sent')
         await conditions()
+    else:
+        print('conditions failed')
 
 
 async def main():
