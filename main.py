@@ -36,6 +36,7 @@ async def reports():
 async def conditions():
     alert_sent = await check_conditions()
     if alert_sent:
+        print("checking condition in 30 min")
         await asyncio.sleep(1800)
         await status_state(False, 'alert_sent')
         await conditions()
