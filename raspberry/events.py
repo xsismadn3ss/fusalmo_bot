@@ -36,7 +36,7 @@ async def check_conditions(h: float, t: float):
         for user in users:
             await bot.send_message(
                 user.chat_id,
-                f"Humedad: {h}%\nTemperatura: {t}° C\n El clima en este momento esta helado.",
+                f"Humedad: {h}%\nTemperatura: {t}° C\nEl clima en este momento esta helado.",
             )
 
     elif h > 50 and t <= 28 and status == False:  # humedad alta
@@ -52,7 +52,7 @@ async def check_conditions(h: float, t: float):
         for user in users:
             await bot.send_message(
                 user.chat_id,
-                f"Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
+                f"Humedad: {h}%\nTemperatura: {t}° C\nEs posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
             )
 
     await status_state(True, "alert_sent")
