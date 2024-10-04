@@ -5,7 +5,7 @@ from bot import *
 from bot.help import help
 from raspberry.read import read_dht
 from raspberry.handle_data import save_data
-from raspberry.events import check_conditions, generateReports
+from raspberry.events import check_conditions, generateReports, status_state
 
 
 async def raspberry():
@@ -33,15 +33,22 @@ async def reports():
     await asyncio.sleep(5)
     await reports()
 
+async def conditions():
+    alert_sent = await check_conditions()
+    if alert_sent:
+        await asyncio.sleep(1800)
+        await status_state(False, 'alert_sent')
+        await conditions()
+
 
 async def main():
     print("Iniciando procesos...")
-
     raspberry_task = asyncio.create_task(raspberry())
     reports_task = asyncio.create_task(reports())
+    conditions_task = asyncio.create_task(conditions())
     await bot.polling()
 
-    asyncio.gather(raspberry_task, reports_task)
+    asyncio.gather(raspberry_task, reports_task, conditions_task)
 
 if __name__ == "__main__":
     print("Bot inicializado 🤖")
