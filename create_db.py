@@ -28,6 +28,12 @@ sqlcommands: dict = {
     avg_humidity REAL NOT NULL,
     date DATE NOT NULL UNIQUE
 );""",
+"Weekly_Averages": """CREATE TABLE Weekly_Averages(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+avg_temperature REAL NOT NULL,
+avg_humidity REAL NOT NULL,
+date DATETIME NOT NULL
+)"""
 }
 
 
