@@ -35,7 +35,8 @@ async def reports():
 
 async def conditions():
     print("conditions")
-    alert_sent = await check_conditions()
+    h, t = await read_dht()
+    alert_sent = await check_conditions(h=h, t=t)
     print(alert_sent)
     if alert_sent:
         print("checking condition in 30 min")
