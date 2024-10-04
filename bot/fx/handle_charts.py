@@ -23,8 +23,8 @@ async def h_chart(humidities):
         path = create_path("h")
         humidity_queries.get_chart(humidities=data, filename=path)
         return path
-    else:
-        return None
+    
+    return None
 
 async def t_chart(temperatures):
     data = temperatures
@@ -34,5 +34,5 @@ async def t_chart(temperatures):
         path = create_path("t")
         temperature_queries.get_chart(temperatures=data, filename=path)
         return path
-    else:
-        return None
+    
+    return None
