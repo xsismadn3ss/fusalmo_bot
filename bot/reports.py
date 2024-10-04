@@ -53,7 +53,7 @@ async def h_reports(message):
     h_data = await humidity_queries.get_from_today()
 
     if h_data is not None:
-        h_chart, max_h, min_h = await humidity_queries(t_data=h_data)
+        h_chart, max_h, min_h = await humidity_report(t_data=h_data)
         await send_t_report(chat_id=chatid, t_chart=h_chart, max_t=max_h, min_t=min_h)
 
     else:
