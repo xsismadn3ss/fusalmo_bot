@@ -13,38 +13,49 @@ from datetime import datetime, time
 from raspberry.load_config import load_config
 
 
-async def check_conditions(h: float, t: float):
-    """Cheack tempereture and humidity conditions"""
-
-    if h > 50 and t <= 28:  # humedad alta
-        users: list[User] = await user_queries.get_all()
-        for user in users:
-            await bot.send_message(
-                user.chat_id,
-                "El nivel de humedad esta demesaiado alto, pero la temperatura es agradable",
-            )
-        return
-
-    elif h > 50 and t > 28:
-        users: list[User] = await user_queries.get_all()
-        for user in users:
-            await bot.send_message(
-                user.chat_id,
-                f"Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
-            )
-        return
-
-
-async def report_state(state: bool) -> None:
+async def status_state(state: bool, key: str) -> None:
     "Update reports sent status"
     config_path = "raspi_config.json"
 
     with open(config_path, "r") as f:
         data = json.load(f)
 
-    data["status"]["reports_sent"] = state
+    data["status"][key] = state
     with open(config_path, "w") as f:
         json.dump(data, f, indent=4)
+
+
+async def check_conditions(h: float, t: float):
+    """Cheack tempereture and humidity conditions"""
+    data = load_config()
+    status = data['status']['alert_sent']
+
+    if h > 50 and t <= 28 and status == False:  # humedad alta
+        users: list[User] = await user_queries.get_all()
+        for user in users:
+            await bot.send_message(
+                user.chat_id,
+                "El nivel de humedad esta demesaiado alto",
+            )
+
+    elif h > 50 and t > 28 and status ==False:
+        users: list[User] = await user_queries.get_all()
+        for user in users:
+            await bot.send_message(
+                user.chat_id,
+                f"Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
+            )
+
+    elif h > 30 and t < 22 and status == False:
+        user: list[User] = await user_queries.get_all()
+        for user in users:
+            await bot.send_message(
+                user.chat_id,
+                f"Humedad: {h}%\nTemperatura: {t}° C\n El clima en este momento esta helado.",
+            )
+
+    await status_state(True, 'alert_sent')
+    return True
 
 async def send_reports():
     # load data
@@ -72,11 +83,11 @@ async def generateReports(time: datetime):
 
     if time.hour >= 3 and time.hour <= 5 and status == False:
         await send_reports()
-        await report_state(True)
-    
+        await status_state(True, "reports_sent")
+
     elif time.hour >= 11 and time.hour <= 14 and status == False:
         await send_reports()
-        await report_state(True)    
+        await status_state(True, "reports_sent")
 
     elif (time.hour > 5 and time.hour < 11) or (time.hour > 14 and time.hour < 3):
-        await report_state(False)
+        await status_state(False, "reports_sent")
