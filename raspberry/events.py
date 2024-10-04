@@ -28,25 +28,10 @@ async def status_state(state: bool, key: str) -> None:
 async def check_conditions(h: float, t: float):
     """Cheack tempereture and humidity conditions"""
     data = load_config()
-    status = data['status']['alert_sent']
+    status = data["status"]["alert_sent"]
+    print("checking conditions...")
 
-    if h > 50 and t <= 28 and status == False:  # humedad alta
-        users: list[User] = await user_queries.get_all()
-        for user in users:
-            await bot.send_message(
-                user.chat_id,
-                "El nivel de humedad esta demesaiado alto",
-            )
-
-    elif h > 50 and t > 28 and status ==False:
-        users: list[User] = await user_queries.get_all()
-        for user in users:
-            await bot.send_message(
-                user.chat_id,
-                f"Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
-            )
-
-    elif h > 30 and t < 22 and status == False:
+    if h > 30 and t < 22 and status == False:
         user: list[User] = await user_queries.get_all()
         for user in users:
             await bot.send_message(
@@ -54,8 +39,26 @@ async def check_conditions(h: float, t: float):
                 f"Humedad: {h}%\nTemperatura: {t}° C\n El clima en este momento esta helado.",
             )
 
-    await status_state(True, 'alert_sent')
+    elif h > 50 and t <= 28 and status == False:  # humedad alta
+        users: list[User] = await user_queries.get_all()
+        for user in users:
+            await bot.send_message(
+                user.chat_id,
+                "El nivel de humedad esta demesaiado alto",
+            )
+
+    elif h > 50 and t > 28 and status == False:
+        users: list[User] = await user_queries.get_all()
+        for user in users:
+            await bot.send_message(
+                user.chat_id,
+                f"Humedad: {h}%\nTemperatura: {t}° C\n Es posible que tengas una sensación térmica mayor a la temperatura ambiente debido al exceso de humedad",
+            )
+
+    await status_state(True, "alert_sent")
+    print("alert sent")
     return True
+
 
 async def send_reports():
     # load data
