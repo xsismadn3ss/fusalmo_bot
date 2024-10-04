@@ -10,7 +10,7 @@ async def send_h_report(chat_id:int, h_chart:str, max_h:Humidity, min_h: Humidit
     print("Enviando reporte de humedad")
     await bot.send_message(chat_id, "Gráfica de Humedad")
     await send_chart(h_chart, chat_id)
-    await bot.send_message(chat_id, f"Máxima: {max_h.value}% ({max_h.time}) \nMínima: {min_h}% ({min_h.time})")
+    await bot.send_message(chat_id, f"Máxima: {max_h.value}% ({max_h.time}) \nMínima: {min_h.value}% ({min_h.time})")
     # await bot.send_message(chat_id, f"Máxima: {max_h}%\nMínima: {min_h}%")
 
 
