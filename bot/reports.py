@@ -54,7 +54,7 @@ async def h_reports(message):
 
     if h_data is not None:
         h_chart, max_h, min_h = await humidity_report(h_data=h_data)
-        await send_t_report(chat_id=chatid, t_chart=h_chart, max_t=max_h, min_t=min_h)
+        await send_h_report(chat_id=chatid, h_chart=h_chart, max_h=max_h, min_h=min_h)
 
     else:
         await bot.send_message(
