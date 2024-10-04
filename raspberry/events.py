@@ -27,7 +27,7 @@ async def status_state(state: bool, key: str) -> None:
 
 async def check_conditions(h: float, t: float):
     """Cheack tempereture and humidity conditions"""
-    data = load_config()
+    data = await load_config()
     status = data["status"]["alert_sent"]
     print("checking conditions...")
 
