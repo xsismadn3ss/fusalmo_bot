@@ -11,7 +11,7 @@ class User:
 @dataclass(init=True, repr=True, eq=True, order=True, frozen=True)
 class Temperature:
     id: int
-    value: int
+    value: float
     date: datetime
 
     @property
@@ -22,7 +22,7 @@ class Temperature:
 @dataclass(init=True, repr=True, eq=True, order=True, frozen=True)
 class Humidity:
     id: int
-    value: int
+    value: float
     date: datetime
 
     @property
