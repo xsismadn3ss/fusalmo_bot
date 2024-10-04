@@ -74,9 +74,9 @@ async def send_reports():
 
     # send reports
     for user in users:
-        await send_h_report(user.chat_id, h_chart, max_h.value, min_h.value)
+        await send_h_report(chat_id=user.chat_id, h_chart=h_chart, min_h=min_h, max_h=max_h)
         await bot.send_message(user.chat_id, "---------------")
-        await send_t_report(user.chat_id, t_chart, max_t.value, min_t.value)
+        await send_t_report(chat_id=user.chat_id, t_chart=t_chart, max_t=max_t, min_t=min_t)
 
 
 async def generateReports(time: datetime):
